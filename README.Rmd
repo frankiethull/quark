@@ -1,0 +1,69 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# quark
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of quark is to streamline a no-code solutions with AutoGluons. 
+
+## Installation (R Dependencies)
+
+You can install the development version of quark like so:
+
+``` r
+devtools::install_github("frankiethull/quark")
+```
+
+## Setup (Environment + Python Dependencies)
+
+```r
+# 1) Create the virual env
+quark::create_quark_env()
+
+# 2) Use the env
+quark::use_quark_env()
+
+# 3) install packages
+quark::install_quark_dependencies()
+```
+
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(quark)
+quark::use_quark_env()
+```
+
+
+```{r}
+# add training and testing data to my environment
+mtcars_train <- mtcars |> head(20)
+mtcars_test <- mtcars |> tail(5)
+ 
+provider <- "ollama"
+llm <- "mistral-nemo"
+
+question <- "please use 'mtcars_train' as training data and 'mtcars_test' as testing data and run the tabular module. I want to predict 'mpg'."
+
+agent_fit_and_preds <- chat_quark(provider = provider, model = llm, prompt = question)
+
+agent_fit_and_preds$agent_summary
+```
+

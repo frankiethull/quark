@@ -1,0 +1,20 @@
+Package: quark
+Title: quark, a gluon agent
+Version: 0.0.0.9000
+Authors@R: 
+    person("frank", "hull", , "frankiethull@gmail.com", role = c("aut", "cre"))
+Description: quark is an autogluons agent for agentic analytics. it's a simple reticulate binding with ellmer tooling. an experimentation of fitting & predicting information as a service.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    arrow,
+    ellmer,
+    here,
+    kuzco,
+    reticulate
+Remotes:
+    frankiethull/kuzco
+Depends:
+  R (>= 4.1.0)
