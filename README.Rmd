@@ -13,12 +13,15 @@ knitr::opts_chunk$set(
 )
 ```
 
-# quark
+# quark <img src="man/figures/logo.png" align="right" height="159" alt="" />
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of quark is to streamline a no-code solutions with AutoGluons. 
+quark is an agentic machine learning interface.   
+
+quark is built in R with [ellmer](https://ellmer.tidyverse.org) & leverages tools via [gluons](https://auto.gluon.ai) to produce an ideal AutoML framework.
+
 
 ## Installation (R Dependencies)
 
@@ -28,7 +31,9 @@ You can install the development version of quark like so:
 devtools::install_github("frankiethull/quark")
 ```
 
-## Setup (Environment + Python Dependencies)
+## Setup (Python Dependencies)
+
+note that quark is a [reticulated](https://rstudio.github.io/reticulate/) system & requires a python environment. The user can set these up like so:
 
 ```r
 # 1) Create the virual env
@@ -42,9 +47,11 @@ quark::install_quark_dependencies()
 ```
 
 
-## Example
+## Agentic ML Example
 
-This is a basic example which shows you how to solve a common problem:
+Once the dependencies are setup, the user can load the library & use the environment created above like so: 
+
+### load dependencies 
 
 ```{r example}
 library(quark)
@@ -52,17 +59,62 @@ quark::use_quark_env()
 ```
 
 
+### an example of tabular machine learning handled by quark: 
+
+quark will either take a full dataset or a training/testing dataset from your environment. Given quark some information about your task, and it will handle the training, test validation, and give you additional details. The fitted model and test predictions are also returned to the user. 
+
+#### dataset of interest 
+
+We're splitting mtcars into two unique datasets to ask quark to create a model with training data & validate on test. 
 ```{r}
 # add training and testing data to my environment
+mtcars <- datasets::mtcars
 mtcars_train <- mtcars |> head(20)
 mtcars_test <- mtcars |> tail(5)
- 
+```
+
+#### LLM & LLM provider  
+
+For this example, we'll use a small language model hosted locally via ollama. mistral-nemo is a small model familiar with tools, same as gpt-oss. *(note: tools are required for quark.)*
+```{r}
 provider <- "ollama"
 llm <- "mistral-nemo"
+```
 
+#### quark agent summary, fitted model, & predictions
+
+Below showcases the results from quark after asking it to create a model for us. quark "flavor" defaults to "concise" but "detailed" is also supported.
+
+##### mistral-nemo   
+```{r}
+ 
 question <- "please use 'mtcars_train' as training data and 'mtcars_test' as testing data and run the tabular module. I want to predict 'mpg'."
 
-agent_fit_and_preds <- chat_quark(provider = provider, model = llm, prompt = question)
+agent_fit_and_preds <- chat_quark(
+  provider = provider, 
+  model = llm, 
+  prompt = question,
+  flavor = "concise"
+  )
+
+agent_fit_and_preds$agent_summary
+```
+    
+##### gpt-oss   
+```{r}
+ 
+provider <- "ollama"
+llm <- "gpt-oss:20b"
+
+
+question <- "please take 'mtcars' from my enviroment, split, summarize, and run the tabular module. I want to predict 'mpg'."
+
+agent_fit_and_preds <- chat_quark(
+  provider = provider, 
+  model = llm, 
+  prompt = question,
+  flavor = "detailed"
+  )
 
 agent_fit_and_preds$agent_summary
 ```

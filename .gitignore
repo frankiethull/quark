@@ -1,2 +1,5 @@
 /.quarto/
 .Rproj.user
+/AutogluonModels/*
+training.csv
+testing.csv
