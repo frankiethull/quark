@@ -4,8 +4,10 @@
 \name{quark-package}
 \alias{quark}
 \alias{quark-package}
-\title{quark: quark, a gluon agent}
+\title{quark: quark, a gluons agent}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 quark is an autogluons agent for agentic analytics. it's a simple reticulate binding with ellmer tooling. an experimentation of fitting & predicting information as a service.
 }
 \author{
