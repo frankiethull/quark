@@ -1,6 +1,6 @@
 Package: quark
-Title: quark, a gluon agent
-Version: 0.0.0.9000
+Title: quark, a gluons agent
+Version: 0.0.1.9000
 Authors@R: 
     person("frank", "hull", , "frankiethull@gmail.com", role = c("aut", "cre"))
 Description: quark is an autogluons agent for agentic analytics. it's a simple reticulate binding with ellmer tooling. an experimentation of fitting & predicting information as a service.
@@ -12,8 +12,12 @@ Imports:
     arrow,
     ellmer,
     here,
+    jsonlite,
     kuzco,
-    reticulate
+    reticulate,
+    skimr
+Suggests:
+    rsample
 Remotes:
     frankiethull/kuzco
 Depends:

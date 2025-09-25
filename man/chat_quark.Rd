@@ -8,7 +8,8 @@ chat_quark(
   provider = "ollama",
   model = "mistral-nemo",
   prompt =
-    "please use 'mtcars_train' as training data and 'mtcars_test' as testing data and run the tabular module. I want to predict mpg."
+    "please use 'mtcars_train' as training data and 'mtcars_test' as testing data and run the tabular module. I want to predict mpg.",
+  flavor = "concise"
 )
 }
 \arguments{
@@ -17,6 +18,8 @@ chat_quark(
 \item{model}{a model from given provider that supports \code{tools}}
 
 \item{prompt}{a user prompt to tell the LLM to train and predict with autogluons}
+
+\item{flavor}{a quark "style", either "concise", "detailed", or "refined"}
 }
 \value{
 an LLM chat interface which can return a fitted model and predictions
